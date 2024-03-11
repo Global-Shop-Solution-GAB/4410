@@ -1,0 +1,87 @@
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN Mar 9, 2017
+'Flag customer as Inactive.
+'When a customer is Inactive, Terms and Credit will be set to 0.
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sCustomer, sSQL, sError)
+v.Local.iCount.Declare(long)
+
+F.ODBC.Connection!Con2.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+v.Local.sCustomer.Set(v.Passed.000002)
+
+
+'Hook 14350: Populate screen: Accounts Receivable > File > Customers 
+f.Intrinsic.Control.If(v.Caller.Hook,=,14350)
+
+	'SetProperty for hiden checkbox and label
+	f.Intrinsic.Variable.SetProperty("GAB-CHK-1","PL",180)
+	F.Intrinsic.Variable.SetProperty("GAB-CHK-1","PT",27)
+	f.Intrinsic.UI.ChangeCallerProperty(v.Passed.GAB-CHK-1,"HIDE",0)
+	F.Intrinsic.UI.ChangeCallerProperty(V.Passed.GAB-CHK-1,"LOCK",0)
+	f.Intrinsic.Variable.SetProperty("GAB-LBL-1","PL",197)
+	F.Intrinsic.Variable.SetProperty("GAB-LBL-1","PT",27)
+	f.Intrinsic.UI.ChangeCallerProperty(v.Passed.GAB-LBL-1,"HIDE",0)
+	F.Intrinsic.UI.ChangeCallerProperty(V.Passed.GAB-LBL-1,"LOCK",0)
+	V.Passed.GAB-LBL-1.Set("Inactive")
+	
+	f.Intrinsic.String.Build("Select count(ID) from GCG_4410_Des_Cust where ID = '{0}'",v.Local.sCustomer,v.Local.sSQL)
+	f.ODBC.Connection!con2.ExecuteAndReturn(v.Local.sSQL,v.Local.iCount)
+	f.Intrinsic.Control.If(v.Local.iCount,>,0)
+		V.Passed.GAB-CHK-1.Set("Y")
+	f.Intrinsic.Control.EndIf
+	
+f.Intrinsic.Control.Endif
+
+'Hook 14385: Post Save button of screen : Accounts Receivable > File > Customers
+f.Intrinsic.Control.If(v.Caller.Hook,=,14385)
+
+	f.Intrinsic.Control.If(V.Passed.GAB-CHK-1.Trim,=,"Y")
+		
+		'Check to see if there is already record in DB
+		f.Intrinsic.String.Build("Select count(ID) from GCG_4410_Des_Cust where ID = '{0}'",v.Local.sCustomer,v.Local.sSQL)
+		f.ODBC.Connection!con2.ExecuteAndReturn(v.Local.sSQL,v.Local.iCount)
+		'if there is not, insert into the DB
+		F.Intrinsic.Control.If(V.Local.iCount,=,0)
+			f.Intrinsic.String.Build("Insert into GCG_4410_Des_Cust values('{0}')",v.Local.sCustomer,v.Local.sSQL)
+			f.ODBC.Connection!con2.Execute(v.Local.sSQL)
+		F.Intrinsic.Control.EndIf
+		
+		'Apply the rules for Inactive customers: Payment_Terms = '' and Credit = ''
+		f.Intrinsic.String.Build("Update Customer_Sales set Payment_Terms = '' where Customer = '{0}' and Rec = '2' ",v.Local.sCustomer,v.Local.sSQL)
+		f.ODBC.Connection!con2.Execute(v.Local.sSQL)
+		f.Intrinsic.String.Build("Update Customer_Master set Credit = '' where Customer = '{0}' and Rec = '1' ",v.Local.sCustomer,v.Local.sSQL)
+		f.ODBC.Connection!con2.Execute(v.Local.sSQL)
+		
+	f.Intrinsic.Control.Else
+	
+		f.Intrinsic.String.Build("Delete from GCG_4410_Des_Cust where ID = '{0}'",v.Local.sCustomer,v.Local.sSQL)
+		f.ODBC.Connection!con2.Execute(v.Local.sSQL)
+			
+	f.Intrinsic.Control.EndIf	
+	
+f.Intrinsic.Control.Endif
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_Cust_Master.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$11/22/2016 10:57:31 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$This project was quoted by Strider Smith and coded by Sisco Quiroz
+September 2016.
+
+This code will run from a custom menu item under Production>Shop Floor Control>Transactions>Transfer WIP to WIP for multiple jobs.
+Program.Sub.Comments.End

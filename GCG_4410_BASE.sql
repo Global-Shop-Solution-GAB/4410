@@ -1,0 +1,4 @@
+CREATE TABLE "GCG_4410_BASE"(
+ "AutoNum" IDENTITY DEFAULT '0',
+ "Customer" CHAR(6),
+ UNIQUE ("AutoNum"));

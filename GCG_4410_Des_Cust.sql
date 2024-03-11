@@ -1,0 +1,2 @@
+CREATE TABLE "GCG_4410_Des_Cust"(
+ "ID" CHAR(6));

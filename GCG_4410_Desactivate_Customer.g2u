@@ -1,0 +1,552 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..Create
+Gui.Form..Caption("Deactivate Customer")
+Gui.Form..Size(12645,14070)
+Gui.Form..MinX(0)
+Gui.Form..MinY(0)
+Gui.Form..Position(0,0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..MousePointer(0)
+Gui.Form..Event(UnLoad,Form_UnLoad)
+Gui.Form.GsCustomer.Create(GsGridControl)
+Gui.Form.GsCustomer.Size(12210,3420)
+Gui.Form.GsCustomer.Position(120,2475)
+Gui.Form.GsCustomer.Event(RowCellClick,GsCustomer_RowCellClick)
+Gui.Form.cmdAdd.Create(Button)
+Gui.Form.cmdAdd.Size(855,375)
+Gui.Form.cmdAdd.Position(105,1965)
+Gui.Form.cmdAdd.Caption("Add")
+Gui.Form.cmdAdd.Event(Click,cmdAdd_Click)
+Gui.Form.cmdDeactivate.Create(Button)
+Gui.Form.cmdDeactivate.Size(1200,375)
+Gui.Form.cmdDeactivate.Position(120,6000)
+Gui.Form.cmdDeactivate.Caption("Deactivate")
+Gui.Form.cmdDeactivate.Event(Click,cmdDeactivate_Click)
+Gui.Form.cmdClearAll.Create(Button)
+Gui.Form.cmdClearAll.Size(975,375)
+Gui.Form.cmdClearAll.Position(1455,6000)
+Gui.Form.cmdClearAll.Caption("Clear All")
+Gui.Form.cmdClearAll.Event(Click,cmdClearAll_Click)
+Gui.Form.frBeg.Create(Frame)
+Gui.Form.frBeg.Size(6060,975)
+Gui.Form.frBeg.Position(105,900)
+Gui.Form.frBeg.Caption("Beginning Customer")
+Gui.Form.txtBegCust.Create(TextBox,"",True,4170,300,0,1080,540,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtBegCust.Parent("frBeg")
+Gui.Form.txtBegCust.MaxLength(30)
+Gui.Form.cmdBegCustomer.Create(Button)
+Gui.Form.cmdBegCustomer.Size(570,375)
+Gui.Form.cmdBegCustomer.Position(5355,510)
+Gui.Form.cmdBegCustomer.Caption("^")
+Gui.Form.cmdBegCustomer.Event(Click,cmdBegCustomer_Click)
+Gui.Form.cmdBegCustomer.Parent("frBeg")
+Gui.Form.cmdBegCustomer.Enabled(False)
+Gui.Form.txtBegID.Create(TextBox,"",True,855,300,0,135,540,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtBegID.Parent("frBeg")
+Gui.Form.txtBegID.MaxLength(6)
+Gui.Form.lbl1.Create(Label,"ID",True,375,255,0,120,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl1.Parent("frBeg")
+Gui.Form.lbl2.Create(Label,"Name",True,990,255,0,1065,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl2.Parent("frBeg")
+Gui.Form.frEnd.Create(Frame)
+Gui.Form.frEnd.Size(6060,975)
+Gui.Form.frEnd.Position(6285,900)
+Gui.Form.frEnd.Caption("Ending Customer")
+Gui.Form.txtEndCust.Create(TextBox,"",True,4170,300,0,1080,540,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtEndCust.Parent("frEnd")
+Gui.Form.txtEndCust.MaxLength(30)
+Gui.Form.cmdEndCustomer.Create(Button)
+Gui.Form.cmdEndCustomer.Size(570,375)
+Gui.Form.cmdEndCustomer.Position(5355,510)
+Gui.Form.cmdEndCustomer.Caption("^")
+Gui.Form.cmdEndCustomer.Event(Click,cmdEndCustomer_Click)
+Gui.Form.cmdEndCustomer.Parent("frEnd")
+Gui.Form.cmdEndCustomer.Enabled(False)
+Gui.Form.txtEndID.Create(TextBox,"",True,855,300,0,135,540,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtEndID.Parent("frEnd")
+Gui.Form.txtEndID.MaxLength(6)
+Gui.Form.lbl4.Create(Label,"Name",True,990,255,0,1065,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl4.Parent("frEnd")
+Gui.Form.lbl3.Create(Label,"ID",True,375,255,0,120,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl3.Parent("frEnd")
+Gui.Form.cmdClearTextBox.Create(Button)
+Gui.Form.cmdClearTextBox.Size(855,375)
+Gui.Form.cmdClearTextBox.Position(1110,1965)
+Gui.Form.cmdClearTextBox.Caption("Clear")
+Gui.Form.cmdClearTextBox.Event(Click,cmdClearTextBox_Click)
+Gui.Form.gsDesCust.Create(GsGridControl)
+Gui.Form.gsDesCust.Size(12210,6285)
+Gui.Form.gsDesCust.Position(120,6900)
+Gui.Form.lbl5.Create(Label,"Deactivated Customers",True,1980,255,0,105,6630,True,0,"Arial",8,-2147483633,0)
+Gui.Form.cmdRefresh.Create(Button)
+Gui.Form.cmdRefresh.Size(855,375)
+Gui.Form.cmdRefresh.Position(120,13275)
+Gui.Form.cmdRefresh.Caption("Refresh")
+Gui.Form.cmdRefresh.Event(Click,cmdRefresh_Click)
+Gui.Form.cmdSelectDate.Create(Button)
+Gui.Form.cmdSelectDate.Size(855,375)
+Gui.Form.cmdSelectDate.Position(4620,375)
+Gui.Form.cmdSelectDate.Caption("Validate")
+Gui.Form.cmdSelectDate.Event(Click,cmdSelectDate_Click)
+Gui.Form.dtpBegDate.Create(DatePicker)
+Gui.Form.dtpBegDate.Size(1935,285)
+Gui.Form.dtpBegDate.Position(120,405)
+Gui.Form.lbl6.Create(Label,"Beginning last Sales Date",True,2040,255,0,120,180,True,0,"Arial",8,-2147483633,0)
+Gui.Form.dtpEndDate.Create(DatePicker)
+Gui.Form.dtpEndDate.Size(1935,285)
+Gui.Form.dtpEndDate.Position(2400,405)
+Gui.Form.lbl7.Create(Label,"Ending last Sales Date",True,1935,255,0,2400,180,True,0,"Arial",8,-2147483633,0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global..BulkDeclareDate(dBegDate, dEndDate)
+v.Global..BulkDeclareString( sBegDate, sEndDate)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN Mar 9, 2017
+'This project allow users to select a single or a range of customers to be deactivated. When a customer is deactivated, Terms and Credit will be set to 0.
+'There is a preselection phase where we select Customer that has last sales date in a specific date range, in order to create a customers base. Then we will select again customers from that base to deactivate.
+'All customers prepared to be deactivated are saved into table GCG_4410_Prepare_Des
+'All customers already deactivated are saved into table GCG_4410_Des_Cust
+'There are other way to flag customer as inactive by the Account Receivable > Customer screen, where we use another script named GCG_4410_Cust_Master
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+f.ODBC.Connection!Con.Execute("Delete from GCG_4410_Base")
+f.ODBC.Connection!Con.Execute("Delete from GCG_4410_Prepare_Des")
+f.Intrinsic.Control.CallSub(Create_Table_To_deactivate)
+f.Intrinsic.Control.CallSub(Bind_Customers_deactivated)
+gui.Form..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+Program.Sub.Form_UnLoad.Start
+F.Intrinsic.Control.SetErrorHandler("Form_UnLoad_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+f.ODBC.Connection!Con.Close
+f.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Form_UnLoad_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Form_UnLoad.End
+
+Program.Sub.cmdSelectDate_Click.Start
+v.Local..BulkDeclareString(sSQL)
+f.Intrinsic.Control.If(v.Screen.Form!dtpBegDate.Value, > , v.Screen.Form!dtpEndDate.Value)
+	f.Intrinsic.UI.Msgbox("Beginnging Date must be before Ending Date")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(v.DataTable.DT.RowCount,>,0)
+	f.Intrinsic.UI.Msgbox("Please empty the customer grid for a new base")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.UI.InvokeWaitDialog("Processing Base Customer")
+
+f.Intrinsic.String.Format(v.Screen.Form!dtpBegDate.Value,"YYYY-MM-DD",v.Global.sBegDate)
+f.Intrinsic.String.Format(v.Screen.Form!dtpEndDate.Value,"YYYY-MM-DD",v.Global.sEndDate)
+F.ODBC.Connection!Con.Execute("Delete from GCG_4410_Base")
+f.Intrinsic.String.Build("select Customer from V_Customer_Sales where Date_Last_Sale between '{0}' and '{1}' and Customer not in (Select ID from GCG_4410_Des_Cust) Order by Customer",v.Global.sBegDate,v.Global.sEndDate,v.Local.sSQL)
+f.Data.DataTable.CreateFromSQL("Base_DT","con",v.Local.sSQL,true)
+Function.Data.DataTable.SaveToDB("Base_DT", "con", "GCG_4410_Base", "",128, "Customer@!@Customer")
+f.Data.DataTable.Close("Base_DT")
+
+gui.Form.cmdBegCustomer.Enabled(True)
+gui.Form.cmdEndCustomer.Enabled(True)
+
+f.Intrinsic.UI.CloseWaitDialog
+
+
+Program.Sub.cmdSelectDate_Click.End
+
+Program.Sub.cmdClearTextBox_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdClearTextBox_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+gui.Form.txtBegID.Text("")
+gui.Form.txtBegCust.Text("")
+gui.Form.txtEndID.Text("")
+gui.Form.txtEndCust.Text("")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdClearTextBox_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.cmdClearTextBox_Click.End
+
+Program.Sub.cmdBegCustomer_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdBegCustomer_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sError, sRet, sTemp, sTitles)
+Variable.Local.iWidths.Declare(long)
+
+Function.Intrinsic.String.Split("Customer*!*Name*!*City*!*State*!*Zip*!*Country*!*Telephone","*!*",variable.local.sTitles)  '7columns
+Function.Intrinsic.String.Split("900*!*2500*!*1100*!*600*!*1000*!*600*!*1400","*!*",variable.local.iWidths)
+
+Function.Intrinsic.UI.SetBrowserHotTypeAhead(true)
+Function.Intrinsic.UI.Browser("Select a Customer","con","select b.Customer, Name_Customer as Name, City, State, Zip, Country, Telephone from GCG_4410_Base b join V_Customer_Master m on b.Customer = m.Customer Order by AutoNum",Variable.Local.sTitles,Variable.Local.iWidths,Variable.Local.sRet)
+
+F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	Gui.Form.txtBegID.Text(V.Local.sRet(0).Trim)
+	Gui.Form.txtBegCust.Text(V.Local.sRet(1).Trim)	
+	Gui.Form.txtEndID.Text(V.Local.sRet(0).Trim)
+	Gui.Form.txtEndCust.Text(V.Local.sRet(1).Trim)
+	Gui.Form.txtEndCust.SetFocus
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdBegCustomer_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.cmdBegCustomer_Click.End
+
+Program.Sub.cmdEndCustomer_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdEndCustomer_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sError, sRet, sTemp, sTitles)
+Variable.Local.iWidths.Declare(long)
+
+Function.Intrinsic.String.Split("Customer*!*Name*!*City*!*State*!*Zip*!*Country*!*Telephone","*!*",variable.local.sTitles)  '7columns
+Function.Intrinsic.String.Split("900*!*2500*!*1100*!*600*!*1000*!*600*!*1400","*!*",variable.local.iWidths)
+
+Function.Intrinsic.UI.SetBrowserHotTypeAhead(true)
+Function.Intrinsic.UI.Browser("Select a Customer","con","select b.Customer, Name_Customer as Name, City, State, Zip, Country, Telephone from GCG_4410_Base b join V_Customer_Master m on b.Customer = m.Customer Order by AutoNum",Variable.Local.sTitles,Variable.Local.iWidths,Variable.Local.sRet)
+
+F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	Gui.Form.txtEndID.Text(V.Local.sRet(0).Trim)
+	Gui.Form.txtEndCust.Text(V.Local.sRet(1).Trim)
+	Gui.Form.cmdAdd.SetFocus
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdEndCustomer_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.cmdEndCustomer_Click.End
+
+Program.Sub.cmdAdd_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdAdd_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sBegID, sEndID, sBegName, sEndName, sResult, sSQL, sError)
+
+f.Intrinsic.Control.If(v.Screen.Form!txtBegID.Text.Trim,=,"", or, v.Screen.Form!txtEndID.Text.Trim,=,"")
+	f.Intrinsic.UI.Msgbox("Please select Beginning and Ending customer.")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.String.RPad(V.Screen.Form!txtBegID.Text," ",6,v.Local.sBegID)
+f.Intrinsic.String.RPad(v.Screen.Form!txtBegCust.Text," ",30,v.Local.sBegName)
+f.Intrinsic.String.RPad(v.Screen.Form!txtEndID.Text," ",6,v.Local.sEndID)
+f.Intrinsic.String.RPad(v.Screen.Form!txtEndCust.Text," ",30, v.Local.sEndName)
+
+f.Intrinsic.String.Build("Select Customer from GCG_4410_Base where Customer = '{0}'",v.Local.sBegID,v.Local.sSQL)
+f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL,v.Local.sResult)
+f.Intrinsic.Control.If(v.Local.sResult.Trim,=,"")
+	f.Intrinsic.UI.Msgbox("Invalid data. Check Beginning ID.")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.String.Build("Select Customer from GCG_4410_Base where Customer = '{0}'",v.Local.sEndID,v.Local.sSQL)
+f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL,v.Local.sResult)
+f.Intrinsic.Control.If(v.Local.sResult.Trim,=,"")
+	f.Intrinsic.UI.Msgbox("Invalid data. Check Ending ID.")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.String.Build("Select Customer from GCG_4410_Base where Customer between '{0}' and '{1}'",v.Local.sBegID, v.Local.sEndID,v.Local.sSQL)
+f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL,v.Local.sResult)
+f.Intrinsic.Control.If(v.Local.sResult.Trim,=,"")
+	f.Intrinsic.UI.Msgbox("Invalid data. Ending ID should be after Beginning ID.")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Data.DataTable.AddRow("DT","BeginningID",v.Local.sBegID,"BeginningName",v.Local.sBegName,"EndingID",v.Local.sEndID,"EndingName",v.Local.sEndName,"Remove","Remove")
+
+f.Intrinsic.Control.CallSub(cmdClearTextbox_Click)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdAdd_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.cmdAdd_Click.End
+
+Program.Sub.cmddeactivate_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmddeactivate_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sSQL, sBegID, sEndID, sCustomer, sResult,sError)
+v.Local.iCounter.Declare(long)
+
+'Grid is empty
+f.Intrinsic.Control.If(v.DataTable.DT.RowCount,=,0)
+	f.Intrinsic.UI.Msgbox("Please select customers.")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+'Grid has rows
+
+f.Intrinsic.Control.For(v.Local.iCounter,0,v.DataTable.DT.RowCount--,1)
+	f.Intrinsic.String.Build("Select Customer from GCG_4410_Base where Customer between '{0}' and '{1}'",Variable.DataTable.DT(v.Local.iCounter).BeginningID!FieldValString,Variable.DataTable.DT(v.Local.iCounter).EndingID!FieldValString,v.Local.sSQL)
+	f.ODBC.Connection!Con.ExecuteAndReturn(v.Local.sSQL,v.Local.sResult)
+	f.Intrinsic.String.Replace(v.Local.sResult,"*!*","",v.Local.sResult)	
+	f.Intrinsic.Control.If(v.Local.sResult.Trim,<>,"")
+		f.Intrinsic.String.Concat(v.Local.sCustomer,"#$#",v.Local.sResult,v.Local.sCustomer)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.iCounter)
+
+f.Intrinsic.String.Split(v.Local.sCustomer,"#$#",v.Local.sCustomer)
+
+'Create table that contains Customers prepared to be deactivated. These values can be repeated.
+f.Data.DataTable.Create("Des_Cust_DT",True)
+f.Data.DataTable.AddColumn("Des_Cust_DT","Customer","string","")
+f.Intrinsic.Control.For(v.Local.iCounter,1,v.Local.sCustomer.UBound,1)
+	f.Data.DataTable.AddRow("Des_Cust_DT","Customer",v.Local.sCustomer(v.Local.iCounter))
+f.Intrinsic.Control.Next(v.Local.iCounter)
+
+'Save all the customers prepared to be deactivated to GCG_4410_Prepare_Des. These values can be repeated.
+Function.Data.DataTable.SaveToDB("Des_Cust_DT", "con", "GCG_4410_Prepare_Des", "",128, "Customer@!@ID")
+f.Data.DataTable.Close("Des_Cust_DT")
+
+'Make the values distinct and save back to  GCG_4410_Prepare_Des
+f.Data.DataTable.CreateFromSQL("Des_Cust_DT","con","select distinct ID as Customer from GCG_4410_Prepare_Des",true)
+f.ODBC.Connection!Con.Execute("Delete from GCG_4410_Prepare_Des")
+Function.Data.DataTable.SaveToDB("Des_Cust_DT", "con", "GCG_4410_Prepare_Des", "",128, "Customer@!@ID")
+
+'Apply the rules for deactivated customer: Payment_Terms = '' and Credit = ''
+f.ODBC.Connection!con.Execute("Update Customer_Sales set Payment_Terms = 'Z' where Rec = '2' and Customer in (select ID from GCG_4410_Prepare_Des) ")
+f.ODBC.Connection!con.Execute("Update Customer_Master set Credit = '' where Rec = '1' and Customer in (select ID from GCG_4410_Prepare_Des) ")
+
+'At this poin, we already deactivated the customers in GCG_4410_Prepare_Des
+'Update the list of all deactivated customer (gcg_4410_Des_Cust): Save the customers in GCG_4410_Prepare_Des to GCG_4410_Des_Cust. With mode 256, if there are old values, keep them, if new values, add them.
+Function.Data.DataTable.SaveToDB("Des_Cust_DT", "con", "GCG_4410_Des_Cust", "Customer",256, "Customer@!@ID")
+f.Data.DataTable.Close("Des_Cust_DT")
+
+'Bind again the below grid that contains all customers already deactivated
+f.Data.DataTable.Close("Customer_deactivated_DT")
+f.Intrinsic.Control.CallSub(Bind_Customers_deactivated)
+
+'Refresh GCG_4410_Base and GCG_4410_Prepare_Des
+f.ODBC.Connection!Con.Execute("Delete from GCG_4410_Base where Customer in (Select ID from GCG_4410_Prepare_Des)")
+f.ODBC.Connection!Con.Execute("Delete from GCG_4410_Prepare_Des")
+
+f.Intrinsic.Control.CallSub(cmdclearall_click)
+
+f.Intrinsic.UI.Msgbox("Deactivated successfully")
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmddeactivate_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.cmddeactivate_Click.End
+
+Program.Sub.cmdClearAll_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdClearAll_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+f.Data.DataTable.Close("DT")
+f.Intrinsic.Control.CallSub(Create_Table_To_deactivate)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdClearAll_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.cmdClearAll_Click.End
+
+Program.Sub.GsCustomer_RowCellClick.Start
+F.Intrinsic.Control.SetErrorHandler("GsCustomer_RowCellClick_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.Intrinsic.Control.If(V.Args.Column,=,"Remove")
+	Function.Data.DataTable.DeleteRow("DT", v.Args.RowIndex)
+Function.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GsCustomer_RowCellClick_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.GsCustomer_RowCellClick.End
+
+Program.Sub.Create_Table_To_deactivate.Start
+F.Intrinsic.Control.SetErrorHandler("Create_Table_To_deactivate_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+f.Data.DataTable.Create("DT",True)
+f.Data.DataTable.AddColumn("DT","BeginningID","string","")
+f.Data.DataTable.AddColumn("DT","BeginningName","string","")
+f.Data.DataTable.AddColumn("DT","EndingID","string","")
+f.Data.DataTable.AddColumn("DT","EndingName","string","")
+f.Data.DataTable.AddColumn("DT","Remove","string","Remove")
+
+Gui.Form.GsCustomer.AddGridViewFromDataTable("GV","DT")
+f.Intrinsic.Control.CallSub(format_gscustomer)
+gui.Form.GsCustomer.MainView("GV")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Create_Table_To_deactivate_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Create_Table_To_deactivate.End
+
+Program.Sub.Bind_Customers_deactivated.Start
+F.Intrinsic.Control.SetErrorHandler("Bind_Customers_deactivated_Err")
+F.Intrinsic.Control.ClearErrors
+
+v.Local..BulkDeclareString(sSQL, sCustomer, sError)
+f.Data.DataTable.CreateFromSQL("Customer_deactivated_DT","con","select Customer as ID, Name_Customer as Name, City, State, Zip, Country, Telephone from V_Customer_Master where Customer in (select ID from GCG_4410_Des_Cust) order by Customer",true)
+Gui.Form.gsDesCust.AddGridViewFromDataTable("Customer_deactivated_GV","Customer_deactivated_DT")
+f.Intrinsic.Control.CallSub(format_gsdescust)
+Gui.Form.gsDesCust.MainView("Customer_deactivated_GV")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Bind_Customers_deactivated_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Bind_Customers_deactivated.End
+
+Program.Sub.Format_gsCustomer.Start
+F.Intrinsic.Control.SetErrorHandler("Format_gsCustomer_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+Gui.Form.GsCustomer.SetColumnProperty("GV","Remove", "ReadOnly", True)
+Gui.Form.GsCustomer.SetColumnProperty("GV","Remove","AllowEdit",false)
+
+gui.Form.GsCustomer.setColumnProperty("GV","BeginningID","MaxWidth","70")
+gui.Form.GsCustomer.setColumnProperty("GV","EndingID","MaxWidth","70")
+gui.Form.GsCustomer.setColumnProperty("GV","EndingName","MaxWidth","300")
+gui.Form.GsCustomer.setColumnProperty("GV","Remove","MaxWidth","50")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Format_gsCustomer_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Format_gsCustomer.End
+
+Program.Sub.Format_gsDesCust.Start
+F.Intrinsic.Control.SetErrorHandler("Format_gsDesCust_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","ID","MaxWidth","70")
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","City","MaxWidth","100")
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","State","MaxWidth","70")
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","Zip","MaxWidth","70")
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","Country","MaxWidth","50")
+gui.Form.gsDesCust.setColumnProperty("Customer_deactivated_GV","Telephone","MaxWidth","100")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Format_gsDesCust_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Format_gsDesCust.End
+
+Program.Sub.cmdRefresh_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdRefresh_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+f.Data.DataTable.Close("Customer_deactivated_DT")
+f.Intrinsic.Control.CallSub(bind_customers_deactivated)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdRefresh_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4410_deactivate_Customer.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.cmdRefresh_Click.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$3/8/2017 10:30:46 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$This project was quoted by Strider Smith and coded by Sisco Quiroz
+September 2016.
+
+This code will run from a custom menu item under Production>Shop Floor Control>Transactions>Transfer WIP to WIP for multiple jobs.
+Program.Sub.Comments.End
